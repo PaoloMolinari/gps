@@ -29,40 +29,35 @@ let tstamp;
 let data = [];
 
 let table;
-//let text;
-
-
-
-
-
-
-
 
 function getposition(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
-    //console.log(lat, lon);
+    alt = position.coords.altitude;
+    acc = position.coords.accuracy;
+    altacc = position.coords.altitudeAccuracy;
+    heading = position.coords.heading;
+    speed = position.coords.speed;
+    tstamp = position.timestamp;    
 }
 
 function setup() {    
-
-canvas = createCanvas(800, 700);
-
-  // Create a tile map and overlay the canvas on top.
-  //  myMap = mappa.tileMap(options);
-  //  myMap.overlay(canvas);
-
+    canvas = createCanvas(800, 700);
     fill(70, 203,31);	
-  stroke(100);
-
+    stroke(100);
 
     table = new p5.Table();
 
-    // noLoop();
-
     lat = 0;
     lon = 0;
+    alt = 0;
+    acc = 0;
+    altacc = 0;
+    heading = 0
+    speed = 0;
+    tstamp = 0;
 
+    // noLoop();
 }
 
 function draw() {
@@ -70,7 +65,7 @@ function draw() {
     sleep(5000);
     console.log('.');
     navigator.geolocation.getCurrentPosition(getposition);
-    console.log(lat, lon);
+    console.log(lat, lon, alt, acc, altacc, heading, speed, tstamp);
 
 
 //    if(lat != nill && lon != nill){
@@ -80,31 +75,20 @@ function draw() {
     
     textSize(22);
     fill('yellow');
-    text(nf(lat), width/2 - 30, height/2 -22);
-    text(nf(lon), width/2 - 30, height/2 + 22);
- //   print(lat);
-  //  print(lon);
+    text('latitud: ' + nf(lat), width/2 - 30, 20);
+    text('longitud: ' + nf(lon), width/2 - 30, 45);
+    text('altitud: ' + nf(alt), width/2 - 30, 70);
+    text('accuracy: ' + nf(acc), width/2 - 30, 95);
+    text('altutud accuracy: ' +  nf(altacc), width/2 - 30, 120);
+    text('heading: ' +  nf(heading), width/2 - 30, 145);
+    text('speed: ' +  nf(speed), width/2 - 30, 170);
+    text('time stamp: ' +  nf(tstamp), width/2 - 30, 195);
+
 }
 
-
-function drawmap(){
-
-    clear();
-     if (myMap.map.getBounds().contains({lat: latitude, lng: longitude})) {
-	 let pos = myMap.latLngToPixel(lat, lon);
-	 console.log(pos);
-      // Get the size of the meteorite and map it. 60000000 is the mass of the largest
-      // meteorite (https://en.wikipedia.org/wiki/Hoba_meteorite)
-//      var size = meteorites.getString(i, 'mass (g)');
-      let size = map(size, 558, 60000000, 1, 25) + myMap.zoom();
-	 ellipse(pos.x, pos.y, size, size);
-
-     }
-
-
-    
+function mouseClicked() {
+  // Code to run.
 }
-
 
 function sleep(millisecondsDuration)
 {
@@ -112,14 +96,6 @@ function sleep(millisecondsDuration)
     setTimeout(resolve, millisecondsDuration);
   })
 }
-
-/*
-function storeData(){
-
-    storeItem()
-    
-}
-*/
 
 /*
 
@@ -133,37 +109,37 @@ function storeData(){
 			text("longitude: " + position.coords.longitude, 5, 200);
 
         
-        position is an object containing various information about
-        the acquired device location:
+	position is an object containing various information about
+	the acquired device location:
 
-        position = {
-            coords: {
-                latitude - Geographical latitude in decimal degrees.
-                longitude - Geographical longitude in decimal degrees. 
-                altitude - Height in meters relative to sea level.
-                accuracy - Possible error margin for the coordinates in meters. 
-                altitudeAccuracy - Possible error margin for the altitude in meters. 
-                heading - The direction of the device in degrees relative to north. 
-                speed - The velocity of the device in meters per second.
-            }
-            timestamp - The time at which the location was retrieved.
-        }
+	position = {
+	    coords: {
+		latitude - Geographical latitude in decimal degrees.
+		longitude - Geographical longitude in decimal degrees. 
+		altitude - Height in meters relative to sea level.
+		accuracy - Possible error margin for the coordinates in meters. 
+		altitudeAccuracy - Possible error margin for the altitude in meters. 
+		heading - The direction of the device in degrees relative to north. 
+		speed - The velocity of the device in meters per second.
+	    }
+	    timestamp - The time at which the location was retrieved.
+	}
         
 
 	 // Optional error callback
     function(error){
 
         
-        In the error object is stored the reason for the failed attempt:
+	In the error object is stored the reason for the failed attempt:
 
-        error = {
-            code - Error code representing the type of error 
-                    1 - PERMISSION_DENIED
-                    2 - POSITION_UNAVAILABLE
-                    3 - TIMEOUT
+	error = {
+	    code - Error code representing the type of error 
+		    1 - PERMISSION_DENIED
+		    2 - POSITION_UNAVAILABLE
+		    3 - TIMEOUT
 
-            message - Details about the error in human-readable format.
-        }
+	    message - Details about the error in human-readable format.
+	}
         
 
     }
