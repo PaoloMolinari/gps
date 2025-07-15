@@ -1,1 +1,2 @@
-feeling,latitud,longitud,altura,accuracy,acc,altura,heding,speed,tstamp
+id,feel,lat,lon,alt,acc,accalt,head,speed,tstamp
+0, none, 0, 0, 0, 0, 0, 0, 0, 0
