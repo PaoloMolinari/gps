@@ -75,14 +75,14 @@ function draw() {
     
     textSize(22);
     fill('yellow');
-    text('latitud: ' + nf(lat), width/2 - 30, 20);
-    text('longitud: ' + nf(lon), width/2 - 30, 45);
-    text('altitud: ' + nf(alt), width/2 - 30, 70);
-    text('accuracy: ' + nf(acc), width/2 - 30, 95);
-    text('altutud accuracy: ' +  nf(altacc), width/2 - 30, 120);
-    text('heading: ' +  nf(heading), width/2 - 30, 145);
-    text('speed: ' +  nf(speed), width/2 - 30, 170);
-    text('time stamp: ' +  nf(tstamp), width/2 - 30, 195);
+    text('latitud: ' + nf(lat), 30, 20);
+    text('longitud: ' + nf(lon), 30, 45);
+    text('altitud: ' + nf(alt), 30, 70);
+    text('accuracy: ' + nf(acc), 30, 95);
+    text('altutud accuracy: ' +  nf(altacc), 30, 120);
+    text('heading: ' +  nf(heading), 30, 145);
+    text('speed: ' +  nf(speed), 30, 170);
+    text('time stamp: ' +  nf(tstamp), 30, 195);
 
 }
 
